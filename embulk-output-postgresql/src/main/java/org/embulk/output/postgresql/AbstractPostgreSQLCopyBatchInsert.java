@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.math.BigDecimal;
 import java.time.Instant;
 import org.embulk.output.jdbc.BatchInsert;
@@ -34,7 +35,7 @@ public abstract class AbstractPostgreSQLCopyBatchInsert
 
     private File createTempFile() throws IOException
     {
-        return File.createTempFile("embulk-output-postgres-copy-", ".tsv.tmp");  // TODO configurable temporary file path
+        return Files.createTempFile("embulk-output-postgres-copy-", ".tsv.tmp").toFile();  // TODO configurable temporary file path
     }
 
     protected File openNewFile() throws IOException
